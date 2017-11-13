@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, View, StyleSheet } from 'react-native'
+import {View, StyleSheet } from 'react-native'
 import DeckList from './DeckList'
 
 class Deck extends React.Component {
@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
+        
     },
 })
 

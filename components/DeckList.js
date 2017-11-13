@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity
-} from 'react-native'
+import { Text, View, FlatList, TouchableOpacity, Platform, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Badge, Card } from 'react-native-elements'
 import { fetchDeckDB } from '../actions'
@@ -18,59 +13,88 @@ class DeckList extends React.Component {
         this.props.fetchDeckDB()
     }
 
-  renderItem = ({ item }) =>
-    <TouchableOpacity
-      onPress={() => this.props.navigation.navigate(
-              'DeckDetail',
-              {
-                entryId: item.key,
-                navTitle: item.title
-              }
-            )}
-    >
-      <View>
-        <Card
-          title={item.title}
-          subtitle={`${item.questions.length} cards`}
-        >
-          <Badge
-            containerStyle={{ backgroundColor: 'lightblue'}}
-          >
-            <Text>
-              {`${item.questions.length} cards`}
-            </Text>
-          </Badge>
-        </Card>
-      </View>
-    </TouchableOpacity>
+    renderItem = ({ item }) =>
+        <TouchableOpacity
+            onPress={() => this.props.navigation.navigate(
+                'DeckDetail',
+                {
+                    entryId: item.key,
+                    navTitle: item.title
+                }
+            )}>
+            <View>
+                {/* <Card
+                    title={item.title}
+                    subtitle={`${item.questions.length} card(s)`}>
+                    <Badge containerStyle={{ backgroundColor: 'lightblue'}}>
+                        <Text>
+                            {`${item.questions.length} card(s)`}
+                        </Text>
+                    </Badge>
+                </Card> */}
+                <View style={ styles.listItem }>
+                    <Text style={ styles.title }>{item.title}</Text>
+                    <Badge containerStyle={{ backgroundColor: 'lightblue', padding: 100, marginBottom: 5}}>
+                        <Text style={ styles.cardNumber }>
+                            {`${item.questions.length} card(s)`}
+                        </Text>
+                    </Badge>
+                </View>
+            </View>
+        </TouchableOpacity>
 
-
-  render() {
-    return (
-      <View style={styles.containerStyle}>
-        {this.props.DBdata.length > 0 ?
-          <FlatList
-            data={this.props.DBdata}
-            renderItem={this.renderItem}
-          />
-          : <Card title="Create a deck to get started!"/>
-        }
-      </View>
-    )
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                {this.props.decks.length > 0 ?
+                    <FlatList
+                        data={this.props.decks}
+                        renderItem={this.renderItem}
+                    />
+                    : <Card title="Create a deck to get started!"/>
+                }
+            </View>
+        )
+    }
 }
 
-const styles = {
-  containerStyle: {
-    flex: 1,
-    alignSelf: 'stretch'
-  }
-};
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignSelf: 'stretch'
+    },
+    listItem: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        borderRadius: Platform.OS === 'ios' ? 16 : 2,
+        marginBottom: 20,
+        shadowRadius: 6,
+        shadowOpacity: .5,
+        shadowColor: 'rgba(0,0,0,24)',
+        marginTop: 5,
+        shadowOffset: {
+            width: 1,
+            height: 5
+        }
+    },
+    title: {
+        fontSize: 20,
+        padding: 5
+    },
+    cardNumber: {
+        // fontSize: 10,
+        // color: '#BBB'
+        // padding: 5
+    }
+})
 
 const mapStateToProps = state => {
-    const DBdata = state.decks;
+    const decks = state.decks;
 
-    return { DBdata };
-};
+    return { decks };
+}
 
 export default connect(mapStateToProps, { fetchDeckDB })(DeckList)
