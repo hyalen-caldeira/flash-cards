@@ -34,21 +34,15 @@ export default class AddEntry extends React.Component {
         const { title, errorMessage } = this.state
 
         return (
-            <View style = {{ flex: 1, justifyContent: 'space-around' }}>
-                <View style = {{flex: 1, alignContent: 'center', alignItems: 'center', justifyContent: 'space-around'}}>
+            <View style={styles.container}>
+                <View style = {styles.header}>
                     <MaterialCommunityIcons name='cards' size={120} color='lightblue' />
                     <Text style={{fontSize: 30, alignItems: 'center', textAlign: 'center', padding: 20 }}>
                         What is the title of your new deck?
                     </Text>
                 </View>
                 <KeyboardAvoidingView 
-                    style = {{
-                        flex: 1,
-                        justifyContent: 'space-around',
-                        alignContent: 'center',
-                        // alignItems: 'center',
-                        padding: 10,
-                    }}
+                    style = {styles.keyboard}
                     behavior="padding"
                 >
                     <Card title="Title" >
@@ -74,52 +68,20 @@ export default class AddEntry extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    item: {
-        // backgroundColor: white,
-        borderRadius: Platform.OS === 'ios' ? 16 : 2,
-        padding: 20,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 17,
-        justifyContent: 'center',
-        shadowRadius: 3,
-        shadowOpacity: 0.8,
-        shadowColor: 'rgba(0, 0, 0, 0.24)',
-        shadowOffset: {
-            width: 0,
-            height: 3
-        },
+    container: {
+        flex: 1, 
+        justifyContent: 'space-around'
     },
-    noDataText: {
-        fontSize: 20,
-        paddingTop: 20,
-        paddingBottom: 20
+    header: {
+        flex: 1, 
+        alignContent: 'center', 
+        alignItems: 'center', 
+        justifyContent: 'space-around'
+    },
+    keyboard: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignContent: 'center',
+        padding: 10,
     }
 })
-
-// import React from 'react'
-// import {
-//     Text,
-//     View,
-//     FlatList,
-//     TouchableOpacity
-// } from 'react-native'
-
-// class DeckCreate extends React.Component {
-//     render() {
-//         return (
-//             <View style={styles.container}>
-//                 <Text>Deck Create</Text>
-//             </View>
-//         )
-//     }
-// }
-
-// const styles = {
-//     containerStyle: {
-//         flex: 1,
-//         alignSelf: 'stretch'
-//     }
-// }
-
-// export default DeckCreate

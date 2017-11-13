@@ -1,28 +1,39 @@
-import {
-    FETCH_DECKS,
-    FETCH_DECK_DETAIL,
-    DELETE_DECK
-} from '../actions/types'
+import { combineReducers } from 'redux';
+import DeckReducer from './DeckReducer';
+import DeckDetailReducer from './DeckDetailReducer';
 
-const INITIAL_STATE = {}
+export default combineReducers({
+    decks: DeckReducer,
+    deckDetail: DeckDetailReducer
+});
 
-function deckReducer (state = INITIAL_STATE, action) {
-    switch (action.type) {
-        case FETCH_DECKS:
-            return {
+// import {
+//     FETCH_DECKS,
+//     FETCH_DECK_DETAIL,
+//     DELETE_DECK
+// } from '../actions/types'
 
-            }
-        case FETCH_DECK_DETAIL:
-            return {
+// const INITIAL_STATE = {}
 
-            }
-        case DELETE_DECK:
-            return {
+// function decks (state = INITIAL_STATE, action) {
+//     switch (action.type) {
+//         case FETCH_DECKS:
+//             console.log("A")
+//             return action.payload
+//         case FETCH_DECK_DETAIL:
+//             console.log("B")
+//             return {
 
-            }
-        default:
-            return state
-    }
-}
+//             }
+//         case DELETE_DECK:
+//             console.log("C")
+//             return {
 
-export default deckReducer
+//             }
+//         default:
+//             console.log("D")
+//             return state
+//     }
+// }
+
+// export default decks
