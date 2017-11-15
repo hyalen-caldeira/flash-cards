@@ -28,7 +28,7 @@ class DeckDetail extends React.Component {
                     <MaterialCommunityIcons name='cards' size={120} color='lightblue' />
                 </View>
                 <Card title={this.props.title} >
-                    <Text style={{marginBottom: 10, textAlign: 'center'}}>
+                    <Text style={styles.cardHeader}>
                         {this.props.questions ? this.props.questions.length : 0} card(s)
                     </Text>
                     <View>
@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         marginRight: 0,
         marginBottom: 0,
+    },
+    cardHeader: {
+        marginBottom: 10, 
+        textAlign: 'center',
+        fontSize: 15
     }
 })
 

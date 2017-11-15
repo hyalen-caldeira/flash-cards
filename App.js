@@ -15,7 +15,8 @@ import QuestionCreate from './components/QuestionCreate'
 import Quiz from './components/Quiz'
 import { midnightBlue } from "./utils/colors"
 
-// Deixar de usar "Card" em DeckList.js
+// Delete
+// Notification
 
 const store = createStore (reducer, applyMiddleware(thunk))
 

@@ -3,6 +3,10 @@ import {View, StyleSheet } from 'react-native'
 import DeckList from './DeckList'
 
 class Deck extends React.Component {
+    componentDidMount() {
+        debugger
+    }
+
     render() {
         return (
             <View style={styles.container}>
