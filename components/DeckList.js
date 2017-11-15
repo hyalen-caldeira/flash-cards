@@ -1,16 +1,16 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity, Platform, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Badge, Card } from 'react-native-elements'
-import { fetchDeckDB } from '../actions'
+import { Card, Badge } from 'react-native-elements'
+import { fetchDecks } from '../actions'
 
 class DeckList extends React.Component {
     componentDidMount() {
-        this.props.fetchDeckDB()
+        this.props.fetchDecks()
     }
 
     componentDidUpdate() {
-        this.props.fetchDeckDB()
+        this.props.fetchDecks()
     }
 
     renderItem = ({ item }) =>
@@ -23,15 +23,6 @@ class DeckList extends React.Component {
                 }
             )}>
             <View>
-                {/* <Card
-                    title={item.title}
-                    subtitle={`${item.questions.length} card(s)`}>
-                    <Badge containerStyle={{ backgroundColor: 'lightblue'}}>
-                        <Text>
-                            {`${item.questions.length} card(s)`}
-                        </Text>
-                    </Badge>
-                </Card> */}
                 <View style={ styles.listItem }>
                     <Text style={ styles.title }>{item.title}</Text>
                     <Badge containerStyle={{ backgroundColor: 'lightblue', padding: 100, marginBottom: 5}}>
@@ -92,9 +83,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-    const decks = state.decks;
+    const decks = state.decks
 
-    return { decks };
+    return { decks }
 }
 
-export default connect(mapStateToProps, { fetchDeckDB })(DeckList)
+export default connect(mapStateToProps, { fetchDecks })(DeckList)
