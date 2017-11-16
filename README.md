@@ -8,7 +8,7 @@ This project was started using [Create React Native App](https://github.com/reac
 
 The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md)
 
-## Project Setup (This assumes that you have Expo installed)
+## Project Setup (this assumes that you have Expo installed)
 
 * Clone the Project - `https://github.com/hyalen-moreira/flash-cards.git`
 * Install the dependencies - `npm install`
