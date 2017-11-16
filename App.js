@@ -15,8 +15,11 @@ import QuestionCreate from './components/QuestionCreate'
 import Quiz from './components/Quiz'
 import { midnightBlue } from "./utils/colors"
 
+// Add:
 // Delete
 // Notification
+// Animation
+// Random questions
 
 const store = createStore (reducer, applyMiddleware(thunk))
 
