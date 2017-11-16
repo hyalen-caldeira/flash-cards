@@ -14,6 +14,7 @@ import DeckList from './components/DeckList'
 import QuestionCreate from './components/QuestionCreate'
 import Quiz from './components/Quiz'
 import { midnightBlue } from "./utils/colors"
+import { setLocalNotification } from './utils/utils'
 
 // Add:
 // Delete
@@ -88,6 +89,10 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+    componentDidMount() {
+        setLocalNotification();
+    }
+
     render() {
         return (
             <Provider store={store}>

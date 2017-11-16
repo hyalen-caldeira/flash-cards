@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { Badge, Button, Card } from 'react-native-elements'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { clearLocalNotification, setLocalNotification } from '../utils/utils'
 
 class Quiz extends React.Component {
     state = {
@@ -10,6 +11,17 @@ class Quiz extends React.Component {
         questions: this.props.navigation.state.params.questions,
         currentQuestion: 0,
         correctAnswers: 0
+    }
+
+    resetNotification() {
+        clearLocalNotification().then(setLocalNotification);
+    }
+
+    backToDeck() {
+        const backAction = NavigationActions.back()
+        this.resetQuiz()
+        this.props.navigation.dispatch(backAction)
+        this.resetNotification()
     }
 
     resetQuiz() {
@@ -21,12 +33,8 @@ class Quiz extends React.Component {
                 correctAnswers: 0
             }
         })
-    }
 
-    backToDeck() {
-        const backAction = NavigationActions.back()
-        this.resetQuiz()
-        this.props.navigation.dispatch(backAction)
+        this.resetNotification()
     }
 
     renderCard() {
@@ -54,7 +62,7 @@ class Quiz extends React.Component {
                     </View>
                     <View style={styles.badgeStyle}>
                         <Badge
-                            containerStyle={{ backgroundColor: 'violet'}}
+                            containerStyle={{ backgroundColor: 'lightblue'}}
                             onPress={() => this.setState({ showQuestion: !this.state.showQuestion })}
                         >
                             <Text>
@@ -65,7 +73,7 @@ class Quiz extends React.Component {
                     <Button
                         buttonStyle={styles.buttonStyle}
                         title="Correct"
-                        backgroundColor='#377D22'
+                        backgroundColor='green'
                         onPress={() => {
                             this.setState({
                                 currentQuestion: currentQuestion+1,
@@ -76,7 +84,7 @@ class Quiz extends React.Component {
                     <Button
                       buttonStyle={[styles.buttonStyle, { marginTop: 10 }]}
                       title="Incorrect"
-                      backgroundColor='#C3392A'
+                      backgroundColor='red'
                       onPress={() => this.setState({ currentQuestion: currentQuestion+1 })}
                     />
                 </Card>
@@ -89,13 +97,13 @@ class Quiz extends React.Component {
                     <Button
                         buttonStyle={styles.buttonStyle}
                         title="Start Over"
-                        backgroundColor='#377D22'
+                        backgroundColor='green'
                         onPress={() => this.resetQuiz()}
                     />
                     <Button
                         buttonStyle={[styles.buttonStyle, { marginTop: 10 }]}
                         title="Back to Deck"
-                        backgroundColor='#C3392A'
+                        backgroundColor='red'
                         onPress={() => this.backToDeck()}
                     />
                 </Card>
