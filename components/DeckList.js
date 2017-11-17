@@ -82,10 +82,12 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => {
-    const decks = state.decks
+// const mapStateToProps = state => {
+//     const decks = state.decks
 
-    return { decks }
-}
+//     return { decks }
+// }
+
+const mapStateToProps = ({ decks }) => ({ decks });
 
 export default connect(mapStateToProps, { fetchDecks })(DeckList)
